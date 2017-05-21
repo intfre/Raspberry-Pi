@@ -30,6 +30,12 @@
 	pre-up wpa_supplicant -B w -D wext -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf  
 	post-down killall -q wpa_supplicant
 
+    auto lo eth0
+	iface lo inet loopback
+	iface eth0 inet dhcp
+	iface wlan0 inet dhcp
+	wpa-conf /home/ubuntu/conf/wpa.conf
+
 如果设置固定IP地址，配置内容如下：
 	allow-hotplug wlan0  
 	auto wlan0  
@@ -42,4 +48,5 @@
     wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf  
 
 连接网络命令。或者重新启动系统可自动连接无线。
+
 	sudo ifup wlan0 
